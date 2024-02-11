@@ -1,25 +1,8 @@
 import React, { useState } from "react";
 
-import "./WeatherCard.css";
+import { Weather } from "../../models/Weather";
 
-interface Weather {
-  name: string;
-  weather: {
-    main: string;
-    description: string;
-    icon: string;
-  };
-  main: {
-    temp: number;
-    feels_like: number;
-    humidity: number;
-    pressure: number;
-  };
-  wind: {
-    speed: number;
-    deg: number;
-  };
-}
+import "./WeatherCard.css";
 
 interface WeatherCardProps {
   initialWeather: Weather;

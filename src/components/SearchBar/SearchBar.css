@@ -6,3 +6,8 @@
   margin-top: 20px;
   margin-bottom: 40px;
 }
+
+input {
+  padding: 12px 20px;
+  margin: 8px 0;
+}

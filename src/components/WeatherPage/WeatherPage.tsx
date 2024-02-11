@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
+// importing styles
 import "./WeatherPage.css";
 
+// importing components
 import { WeatherCard } from "../WeatherCard";
 import { SearchBar } from "../SearchBar";
+
+// importing models
+
+import { Weather } from "../../models/Weather";
 
 // This is the WeatherPage component
 // This component is the parent component of the WeatherCard component and Search component
@@ -75,11 +81,23 @@ const MOCK_DATA = [
 ];
 
 export const WeatherPage = () => {
+  const [currentWeather, setCurrentWeather] = useState<Weather>(MOCK_DATA[0]);
+
+  // Assuming we want to find the first city that matches the search term
+  const handleSearch = (searchTerm: string) => {
+    const foundWeather = MOCK_DATA.find((weather) => weather.name.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    if (foundWeather) {
+      console.log("Found weather: ", foundWeather.name);
+      setCurrentWeather(foundWeather);
+    }
+  };
+
   return (
     <div className="weather-page-wrapper">
       <div className="weather-page-container">
-        <SearchBar />
-        <WeatherCard initialWeather={MOCK_DATA[0]} />
+        <SearchBar onSearch={handleSearch} />
+        {/* <WeatherCard weather={currentWeather} /> */}
       </div>
     </div>
   );
