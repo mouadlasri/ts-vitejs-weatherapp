@@ -5,15 +5,15 @@ import { Weather } from "../../models/Weather";
 import "./WeatherCard.css";
 
 interface WeatherCardProps {
-  initialWeather: Weather;
+  weather: Weather;
 }
 
 // interface WeatherCardProps {
 //   weatherData: Weather[];
 // }
 
-export const WeatherCard = ({ initialWeather }: WeatherCardProps) => {
-  const [currentWeather, setCurrentWeather] = useState<Weather>(initialWeather);
+export const WeatherCard = ({ weather }: WeatherCardProps) => {
+  const currentWeather = weather;
 
   return (
     <div className="weather">

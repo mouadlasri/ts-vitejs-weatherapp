@@ -81,7 +81,7 @@ const MOCK_DATA = [
 ];
 
 export const WeatherPage = () => {
-  const [currentWeather, setCurrentWeather] = useState<Weather>(MOCK_DATA[0]);
+  const [currentWeather, setCurrentWeather] = useState<Weather>(MOCK_DATA[1]);
 
   // Assuming we want to find the first city that matches the search term
   const handleSearch = (searchTerm: string) => {
@@ -97,7 +97,7 @@ export const WeatherPage = () => {
     <div className="weather-page-wrapper">
       <div className="weather-page-container">
         <SearchBar onSearch={handleSearch} />
-        {/* <WeatherCard weather={currentWeather} /> */}
+        <WeatherCard weather={currentWeather} />
       </div>
     </div>
   );
