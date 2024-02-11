@@ -1,0 +1,28 @@
+.weather-page-wrapper {
+  /* Background image that will be of opacity 0.5 because of wrapper */
+  height: 100%;
+  width: 100%;
+}
+
+.weather-page-wrapper::after {
+  content: "";
+  background-image: url("../../assets/sunset.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.weather-page-container {
+  height: 100%;
+  padding-top: 20px;
+}
+
+h1 {
+  margin-top: 0;
+}
