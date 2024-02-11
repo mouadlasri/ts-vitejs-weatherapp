@@ -1,15 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./WeatherCard.css";
 
-export const WeatherCard = () => {
+interface Weather {
+  name: string;
+  weather: {
+    main: string;
+    description: string;
+    icon: string;
+  };
+  main: {
+    temp: number;
+    feels_like: number;
+    humidity: number;
+    pressure: number;
+  };
+  wind: {
+    speed: number;
+    deg: number;
+  };
+}
+
+interface WeatherCardProps {
+  initialWeather: Weather;
+}
+
+// interface WeatherCardProps {
+//   weatherData: Weather[];
+// }
+
+export const WeatherCard = ({ initialWeather }: WeatherCardProps) => {
+  const [currentWeather, setCurrentWeather] = useState<Weather>(initialWeather);
+
   return (
     <div className="weather">
       {/* Top Part of Card */}
       <div className="top">
         <div>
-          <p className="city">City Name</p>
-          <p className="weather-description">Weather Description</p>
+          <p className="city">{currentWeather.name}</p>
+          <p className="weather-description">{currentWeather.name}</p>
         </div>
         <img alt="weather" className="weather-icon" src="" />
       </div>
@@ -23,19 +52,19 @@ export const WeatherCard = () => {
           </div>
           <div className="parameter-row">
             <span className="parameter-row">Feels like</span>
-            <span className="parameter-value">C</span>
+            <span className="parameter-value">{currentWeather.main.temp}C</span>
           </div>
           <div className="parameter-row">
             <span className="parameter-row">Wind</span>
-            <span className="parameter-value">%</span>
+            <span className="parameter-value">{currentWeather.wind.speed}%</span>
           </div>
           <div className="parameter-row">
             <span className="parameter-row">Humidity</span>
-            <span className="parameter-value">%</span>
+            <span className="parameter-value">{currentWeather.main.humidity}%</span>
           </div>
           <div className="parameter-row">
             <span className="parameter-row">Pressure</span>
-            <span className="parameter-value">%</span>
+            <span className="parameter-value">{currentWeather.main.pressure}%</span>
           </div>
         </div>
       </div>

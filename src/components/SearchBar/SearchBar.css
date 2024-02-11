@@ -1,0 +1,8 @@
+.search-bar-container {
+  display: flex;
+  justify-content: center; /* Aligns items horizontally in the center */
+  /* align-items: center; Aligns items vertically in the center (if you also want vertical alignment) */
+  /* height: 100px; Adjust height as needed   */
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
