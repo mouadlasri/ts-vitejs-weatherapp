@@ -1,5 +1,5 @@
 // WeatherAPI.ts
-const API_KEY = "9df092e11698175dd9db2eccf3d19e45";
+const API_KEY = import.meta.env.VITE_OPENWEATHERMAP_API_KEY;
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather/";
 
 interface WeatherResponse {
@@ -15,7 +15,7 @@ interface WeatherResponse {
 const WeatherAPI = {
   fetchWeather: async (city: string): Promise<any | null> => {
     console.log("City is:", city);
-    const url = `api/?q=${city}&appid=${API_KEY}&units=metric`;
+    const url = `api/?q=${city.name}&appid=${API_KEY}&units=metric`;
     try {
       const response = await fetch(url, {
         method: "GET",
