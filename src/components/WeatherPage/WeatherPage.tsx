@@ -8,8 +8,10 @@ import { WeatherCard } from "../WeatherCard";
 import { SearchBar } from "../SearchBar";
 
 // importing models
-
 import { Weather } from "../../models/Weather";
+
+// importing API
+import WeatherAPI from "../../api/WeatherAPI";
 
 // This is the WeatherPage component
 // This component is the parent component of the WeatherCard component and Search component
@@ -84,12 +86,13 @@ export const WeatherPage = () => {
   const [currentWeather, setCurrentWeather] = useState<Weather>(MOCK_DATA[1]);
 
   // Assuming we want to find the first city that matches the search term
-  const handleSearch = (searchTerm: string) => {
+  const handleSearch = async (searchTerm: string) => {
     const foundWeather = MOCK_DATA.find((weather) => weather.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
     if (foundWeather) {
       console.log("Found weather: ", foundWeather.name);
       setCurrentWeather(foundWeather);
+      const data = await WeatherAPI.fetchWeather(currentWeather);
     }
   };
 
