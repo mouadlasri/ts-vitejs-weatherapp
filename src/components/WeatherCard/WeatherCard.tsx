@@ -12,6 +12,8 @@ interface WeatherCardProps {
 //   weatherData: Weather[];
 // }
 
+const iconUrl = "http://openweathermap.org/img/w/";
+
 export const WeatherCard = ({ weather }: WeatherCardProps) => {
   const currentWeather = weather;
 
@@ -21,21 +23,21 @@ export const WeatherCard = ({ weather }: WeatherCardProps) => {
       <div className="top">
         <div>
           <p className="city">{currentWeather.name}</p>
-          <p className="weather-description">{currentWeather.name}</p>
+          <p className="weather-description">{currentWeather.weather[0].description}</p>
         </div>
-        <img alt="weather" className="weather-icon" src="" />
+        <img alt="weather" className="weather-icon" src={iconUrl + currentWeather.weather[0].icon + ".png"} />
       </div>
 
       {/* Bottom Part of Card */}
       <div className="bottom">
-        <p className="temperature">28</p>
+        <p className="temperature">{currentWeather.main.temp}</p>
         <div className="details">
           <div className="parameter-row">
             <span className="paremeter-label">Details</span>
           </div>
           <div className="parameter-row">
             <span className="parameter-row">Feels like</span>
-            <span className="parameter-value">{currentWeather.main.temp}C</span>
+            <span className="parameter-value">{currentWeather.main.feels_like}C</span>
           </div>
           <div className="parameter-row">
             <span className="parameter-row">Wind</span>

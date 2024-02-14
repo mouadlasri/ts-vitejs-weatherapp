@@ -83,16 +83,22 @@ const MOCK_DATA = [
 ];
 
 export const WeatherPage = () => {
-  const [currentWeather, setCurrentWeather] = useState<Weather>(MOCK_DATA[1]);
+  const [currentWeather, setCurrentWeather] = useState<Weather>();
 
   // Assuming we want to find the first city that matches the search term
   const handleSearch = async (searchTerm: string) => {
-    const foundWeather = MOCK_DATA.find((weather) => weather.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    // const foundWeather = MOCK_DATA.find((weather) => weather.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
-    if (foundWeather) {
-      console.log("Found weather: ", foundWeather.name);
-      setCurrentWeather(foundWeather);
-      const data = await WeatherAPI.fetchWeather(currentWeather);
+    // if (foundWeather) {
+    //   console.log("Found weather: ", foundWeather.name);
+    //   setCurrentWeather(foundWeather);
+    //   const data = await WeatherAPI.fetchWeather(currentWeather);
+    // }
+
+    const data = await WeatherAPI.fetchWeather(searchTerm);
+    if (data) {
+      console.log("Found weather: ", data.name);
+      setCurrentWeather(data);
     }
   };
 
@@ -100,7 +106,8 @@ export const WeatherPage = () => {
     <div className="weather-page-wrapper">
       <div className="weather-page-container">
         <SearchBar onSearch={handleSearch} />
-        <WeatherCard weather={currentWeather} />
+        {currentWeather && <WeatherCard weather={currentWeather} />}
+        {/* <WeatherCard weather={currentWeather} /> */}
       </div>
     </div>
   );

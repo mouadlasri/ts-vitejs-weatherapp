@@ -2,26 +2,13 @@
 const API_KEY = import.meta.env.VITE_OPENWEATHERMAP_API_KEY;
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather/";
 
-interface WeatherResponse {
-  // Define structure according to the API response
-  main: {
-    temp: number;
-    humidity: number;
-  };
-  weather: [{ description: string }];
-  name: string; // City name
-}
-
 const WeatherAPI = {
   fetchWeather: async (city: string): Promise<any | null> => {
-    console.log("City is:", city);
-    const url = `api/?q=${city.name}&appid=${API_KEY}&units=metric`;
+    console.log("Search term inside fetchWeater is:", city);
+    const url = `api/?q=${city}&appid=${API_KEY}&units=metric`;
     try {
       const response = await fetch(url, {
         method: "GET",
-        mode: "cors",
-        credentials: "same-origin",
-        referrerPolicy: "no-referrer",
         headers: {
           "Content-Type": "application/json",
         },
